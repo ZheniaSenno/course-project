@@ -3,38 +3,19 @@
 
 namespace CourseProject
 {
-	void Functions::FillList(String^ text, String^ ans, UInt32 points)
-	{
-		DataModels::Question^ newquestion = gcnew DataModels::Question();
-		newquestion->ID = questionsList->Items->Count + 1;
-		newquestion->Text = text;
-		newquestion->AnswerText = ans;
-		newquestion->CreatedTime = DateTime::Now;
-		newquestion->Points = points;
-		questionsList->Items->Add(newquestion);
-}
+
 void Functions::WriteToFile()
 {
-	FillList("Вопрос", "Ответ", 30);
-	JsonUtils::Serialize(questionsList, _questionsfilename);
+	JsonUtils::Serialize(questionsList, "..\\CourseProject\\learning\\" + _questionsfilename);
+	JsonUtils::Serialize(snippetsList, "..\\CourseProject\\learning\\" + _snippetsfilename);
 }
 void Functions::ReadFromFile()
 {
-	questionsList = JsonUtils::Deserialize<DataModels::Questions^>(_questionsfilename);
+	questionsList = JsonUtils::Deserialize<DataModels::Questions^>("..\\CourseProject\\learning\\" + _questionsfilename);
+	userList = JsonUtils::Deserialize<DataModels::Questions^>("..\\CourseProject\\learning\\"+_questionsfilename);
+	snippetsList = JsonUtils::Deserialize<DataModels::Snippets^>("..\\CourseProject\\learning\\" + _snippetsfilename);
 }
 
-List<DataModels::Questions^> ^Functions::Randomize(List<DataModels::Questions^> ^list)
-{
-	List<DataModels::Questions^> ^randomizedList = gcnew List<DataModels::Questions^>();
-
-	while (list->Count > 0)
-	{
-		int index = rnd->Next(0, list->Count);
-		randomizedList->Add(list[index]);
-		list->RemoveAt(index);
-}
-return randomizedList;
-}
 
 DataModels::Question^ Functions::GetRandomQuestion()
 {
@@ -42,35 +23,62 @@ DataModels::Question^ Functions::GetRandomQuestion()
 	return questionsList->Items[index];
 }
 
-bool Functions::CheckAnswer(String^ ans)
+
+void Functions::Shuffle(DataModels::Questions ^list)
 {
-	if (ans->Equals(current->AnswerText))
-	return true;
-	else return false;
+		int n = list->Items->Count;
+		while (n > 1)
+		{
+			n--;
+			int k = rnd->Next(n + 1);
+			DataModels::Question ^value = list->Items[k];
+			list->Items[k] = list->Items[n];
+			list->Items[n] = value;
+		}
 }
 
-void Functions::NextQuestion()
-{
 
+DataModels::Question^ Functions::GetNext(DataModels::Questions ^list, DataModels::Question ^item)
+{
+	auto nextIndex = list->Items->IndexOf(item) + 1;
+
+	if (nextIndex == list->Items->Count)
+	{
+		//GetResults();
+		return list->Items[0];
+	}
+
+	return list->Items[nextIndex];
 }
 
+generic<typename T>
+	bool Functions::isArraysEqual(array<T> ^a1, array<T> ^a2)
+	{
+		if (ReferenceEquals(a1, a2))
+		{
+			return true;
+		}
 
-/* String^ Functions::LoadFromCloud()
-{
-try
-{
-DropboxClient^ dbx = gcnew DropboxClient(access_token);
-String^ folder = "app_service";
-String^ file = _questionsfilename;
-auto tdownload = dbx->Files->DownloadAsync();
-//task->Wait();
-auto res = tdownload->Result;
-return res->Response->Rev;
-}
+		if (a1 == nullptr || a2 == nullptr)
+		{
+			return false;
+		}
 
-catch (AggregateException^ e)
-{
-return e->InnerException->Message;
-}
-}*/
+		if (a1->Length != a2->Length)
+		{
+			return false;
+		}
+
+		EqualityComparer<T> ^comparer = EqualityComparer<T>::Default;
+		for (int i = 0; i < a1->Length; i++)
+		{
+			if (!comparer->Equals(a1[i], a2[i]))
+			{
+				return false;
+			}
+		}
+		return true;
+	}
+
+
 }

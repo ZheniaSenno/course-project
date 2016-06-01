@@ -10,8 +10,6 @@ namespace CourseProject
 	using namespace System::Threading::Tasks;
 	using namespace System::Threading;
 	using namespace System::Diagnostics;
-	using namespace Dropbox::Api;
-	using namespace Dropbox::Api::Files;
 
 
 	public ref class Functions abstract sealed
@@ -19,20 +17,25 @@ namespace CourseProject
 		private:
 		static Random ^rnd = gcnew Random();
 		// to settings file
-		static String^ _questionsfilename = "test.json";
-		static String^ access_token = "TmWrUp_xjCAAAAAAAAAAChaOn_mLVPQgPtx-RUpILzhJApfdGRRyzTJf7hgjv326";
 		public:
+		static int counter;
+		static String^ _questionsfilename = "questions.json";
+		static String^ _snippetsfilename = "snippets.json";
+
 		static DataModels::Questions^ questionsList = gcnew DataModels::Questions();
+		static DataModels::Questions^ userList = gcnew DataModels::Questions();
+		static DataModels::Snippets^ snippetsList = gcnew DataModels::Snippets();
 		static DataModels::Question^ current = gcnew DataModels::Question();
-		static void FillList(String^ text, String^ ans, UInt32 points);
 
 		static void WriteToFile();
 		static void ReadFromFile();
 
-		static List<DataModels::Questions^> ^Randomize(List<DataModels::Questions^> ^list);
 		static DataModels::Question^ GetRandomQuestion();
-		static bool CheckAnswer(String^ ans);
-		static void NextQuestion();
+		static DataModels::Question^ GetNext(DataModels::Questions ^list, DataModels::Question ^item);
+		static void Shuffle(DataModels::Questions ^list);
+
+		generic<typename T>
+			static bool isArraysEqual(array<T> ^a1, array<T> ^a2);
 
 };
 }

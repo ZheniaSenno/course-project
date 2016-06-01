@@ -4,6 +4,7 @@ namespace CourseProject
 	using namespace System;
 	using namespace System::IO;
 	using namespace Newtonsoft::Json;
+	using namespace System::Runtime::Serialization::Formatters::Binary;
 
 	public ref class JsonUtils abstract sealed
 	{

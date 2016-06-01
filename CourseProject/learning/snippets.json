@@ -1,0 +1,52 @@
+{
+  "items": [
+    {
+      "text": "typedef struct {\n   SP_SpinLock lock;\n   CpuSchedVcpuSnap vcpu[CPUSCHED_VCPUS_MAX];\n   uint32 vcpuSort[CPUSCHED_VCPUS_MAX];\n   CpuSchedPcpuSnap pcpu[CPUSCHED_PCPUS_MAX];\n   CpuSchedCellSnap cell[CPUSCHED_CELLS_MAX];\n   CpuSchedGroupSnap group[SCHED_GROUPS_MAX];\n   CpuSchedGlobalSnap global;   \n} CpuSchedSnap;",
+      "id": 1
+    },
+    {
+      "text": "int main(void)\n{\n   int* p = NULL;\n   free(p);\n\n   return 0;\n}",
+      "id": 2
+    },
+    {
+      "text": "#include <stdio.h>\n\nint main(void)\n{\n    char *ptr = \"Some string\";\n    *ptr = 'L';\n\n    printf(\"%s\\n\", ptr);\n\n    return 0;\n}",
+      "id": 3
+    },
+    {
+      "text": "#include <stdio.h>\n\nint main(void)\n{\n\tint arr[4] = { 1, 3 };\n\tint c = ++arr[1] + arr[2]++;\n\tc += arr[2];\n\tprintf(\"%d\\n\", c);\n\n\treturn 0;\n}",
+      "id": 4
+    },
+    {
+      "text": "#include <stdio.h>\n#include <string.h>\n#include <stdlib.h>\nvoid func(char **p)\n{\n\t++p;\n}\n\nint main(void)\n{\n\tchar *str = (char *)malloc(64);\n\tstrcpy(str, \"test_String\");\n\tfunc(&str);\n\tfunc(&str);\n\tprintf(\"%s\\n\", str);\n\tfree(str);\n\treturn 0;\n}",
+      "id": 5
+    },
+    {
+      "text": "int main(void)\n{\n\tconst char *foo = \"wow\";\t// line 1\n\tfoo = \"top\";\t\t// line 2\n\tfoo[0] = 1;\t\t// line 3\n\n\treturn 0;\n}",
+      "id": 6
+    },
+    {
+      "text": "#include <stdio.h>\n\nint main(){\n    const char   test[] = \"clang\";\n    const char*  test2 = \"helloworld\";\n    printf(\"%lu\\n\", sizeof(test) + \n                    sizeof(test2));\n    return 0;\n}",
+      "id": 7
+    },
+    {
+      "text": "int main(void)\n{\n    int i=-3, j=2, k=0, m;\n    m = ++i && ++j || ++k;\n    printf(\"%d, %d, %d, %d\\n\", i, j, k, m);\n    \n    return 0;\n}",
+      "id": 8
+    },
+    {
+      "text": "#include<stdio.h>\n\nvoid fun(int);\n\nint main(int argc)\n{\n    printf(\"%d \", argc);\n    fun(argc);\n\n    return 0;\n}\nvoid fun(int i)\n{\n    if(i!=4)\n        main(++i);\n}",
+      "id": 9
+    },
+    {
+      "text": "#include<stdio.h>\n\nint main()\n{\n    typedef char (*(*arrfptr[3])())[10];\n    arrfptr x;\n    return 0;\n}",
+      "id": 10
+    },
+    {
+      "text": "#include <stdio.h>\n\n\nint main(void)\n{\n    int ints[] = { 0, 1, 2, 3 };\n    int* i1 = ints + 1;\n    int* i2 = ints + 2;\n    int a = ++*i1 + *i2++;\n    int b = *++i1 + *i2--;\n    printf(\"%d#%d\", a, b);\n    return 0;\n}",
+      "id": 11
+    },
+    {
+      "text": "#include <stdio.h>\n\n#define start main\n\nvoid start()\n{\n     printf(\"Hello\");\n}",
+      "id": 12
+    }
+  ]
+}

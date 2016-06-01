@@ -1,0 +1,504 @@
+{
+  "items": [
+    {
+      "created": "31 мая 2016 г. 23:00:48",
+      "snippet_id": 2,
+      "complexity_level": 0,
+      "isright": null,
+      "checks": [
+        false,
+        true,
+        false,
+        false
+      ],
+      "answers": [
+        "SIGSEGV",
+        "Ничего. Данный код безопасен",
+        "valgrind: Invalid free() / delete / delete[] / realloc()",
+        "Программа не скомпилируется"
+      ],
+      "text": "Что произойдет в результате выполнения следующей программы?",
+      "id": 1
+    },
+    {
+      "created": "31 мая 2016 г. 23:03:30",
+      "snippet_id": 3,
+      "complexity_level": 0,
+      "isright": null,
+      "checks": [
+        false,
+        false,
+        false,
+        true
+      ],
+      "answers": [
+        "L",
+        "Программа не скомпилируется",
+        "Lome string",
+        "SIGSEGV"
+      ],
+      "text": "Что выведется на экран после компиляции следующего куска кода?",
+      "id": 2
+    },
+    {
+      "created": "31 мая 2016 г. 23:14:09",
+      "snippet_id": 4,
+      "complexity_level": 0,
+      "isright": null,
+      "checks": [
+        false,
+        false,
+        false,
+        true
+      ],
+      "answers": [
+        "0",
+        "3",
+        "4",
+        "5"
+      ],
+      "text": "Чему будет равно значение переменной с после выполнения следующего кода?",
+      "id": 3
+    },
+    {
+      "created": "31 мая 2016 г. 23:29:47",
+      "snippet_id": 0,
+      "complexity_level": 0,
+      "isright": null,
+      "checks": [
+        false,
+        true,
+        false,
+        false
+      ],
+      "answers": [
+        "1,2,4",
+        "1,2,3",
+        "1,2",
+        "Все варианты неверные"
+      ],
+      "text": "Какие утверждение об\n void *realloc(void *ptr, size_t size);\nявляются верными?\n\n1) realloc изменяет размер выделяемой памяти, на которую указывает аргумент ptr\n\n2) Выделяемая память будет неинициализирована\n\n3) Возможно безопасно передать NULL в realloc\n\n4) realloc гарантирует, что данные по указанному адресу не будут перемещены в другую область память",
+      "id": 4
+    },
+    {
+      "created": "1 июня 2016 г. 0:03:08",
+      "snippet_id": 0,
+      "complexity_level": 0,
+      "isright": null,
+      "checks": [
+        false,
+        false,
+        false,
+        true
+      ],
+      "answers": [
+        "4 байта",
+        "16 байтов",
+        "32  байта",
+        "На разных системах - разное количество"
+      ],
+      "text": "Какое количество байт используется для хранения типа long long ?",
+      "id": 5
+    },
+    {
+      "created": "1 июня 2016 г. 0:13:45",
+      "snippet_id": 5,
+      "complexity_level": 0,
+      "isright": null,
+      "checks": [
+        true,
+        false,
+        false,
+        false
+      ],
+      "answers": [
+        "test_String",
+        "est_String",
+        "Неопределенное поведение",
+        "Ошибка доступа к памяти"
+      ],
+      "text": "Что выведется на экран?",
+      "id": 6
+    },
+    {
+      "created": "1 июня 2016 г. 0:16:52",
+      "snippet_id": 0,
+      "complexity_level": 0,
+      "isright": null,
+      "checks": [
+        false,
+        false,
+        false,
+        true
+      ],
+      "answers": [
+        "*(int pMyFunc(int));",
+        "int ()(int)* pMyFunc;",
+        "int *pMyFunc (int);",
+        "int (*pMyFunc)(int);"
+      ],
+      "text": "Как корректно объявить указатель на функцию с именем pMyFunc, которая возвращает int и имеет параметр типа int?",
+      "id": 7
+    },
+    {
+      "created": "1 июня 2016 г. 0:21:16",
+      "snippet_id": 6,
+      "complexity_level": 0,
+      "isright": null,
+      "checks": [
+        false,
+        true,
+        false,
+        false
+      ],
+      "answers": [
+        "Строка 2",
+        "Строка 3",
+        "Строки 2 и 3",
+        "Ни одна из них не скомпилируется"
+      ],
+      "text": "Какие строки не скомпилируются в следующей программе?",
+      "id": 8
+    },
+    {
+      "created": "1 июня 2016 г. 0:35:36",
+      "snippet_id": 7,
+      "complexity_level": 0,
+      "isright": null,
+      "checks": [
+        false,
+        true,
+        false,
+        false
+      ],
+      "answers": [
+        "8",
+        "14",
+        "16",
+        "17"
+      ],
+      "text": "Какое число отобразится на экране? (8-byte pointers)",
+      "id": 9
+    },
+    {
+      "created": "1 июня 2016 г. 0:47:06",
+      "snippet_id": 0,
+      "complexity_level": 0,
+      "isright": null,
+      "checks": [
+        false,
+        true,
+        false,
+        false
+      ],
+      "answers": [
+        "Да",
+        "Нет",
+        "-",
+        "-"
+      ],
+      "text": "Могут ли данные, записанные в файл с помощью функции fwrite() прочитаны обратно, с ипользованием fscanf()",
+      "id": 10
+    },
+    {
+      "created": "1 июня 2016 г. 0:55:28",
+      "snippet_id": 0,
+      "complexity_level": 0,
+      "isright": null,
+      "checks": [
+        false,
+        false,
+        true,
+        false
+      ],
+      "answers": [
+        "a>b ? c=30 : c=40;",
+        "a>b ? c=30;",
+        "max = a>b ? a>c?a:c:b>c?b:c",
+        "return (a>b)?(a:b)"
+      ],
+      "text": "Выберите корректное объявление тернарного оператора",
+      "id": 11
+    },
+    {
+      "created": "1 июня 2016 г. 1:03:47",
+      "snippet_id": 8,
+      "complexity_level": 0,
+      "isright": null,
+      "checks": [
+        false,
+        false,
+        true,
+        false
+      ],
+      "answers": [
+        "1, 2, 0, 1",
+        "-3, 2, 0, 1",
+        "-2, 3, 0, 1",
+        "2, 3, 1, 1"
+      ],
+      "text": "Что выведется на экран в результате выполнения следующей программы?",
+      "id": 12
+    },
+    {
+      "created": "1 июня 2016 г. 1:10:37",
+      "snippet_id": 9,
+      "complexity_level": 0,
+      "isright": null,
+      "checks": [
+        false,
+        true,
+        false,
+        false
+      ],
+      "answers": [
+        "1 2 3",
+        "1 2 3 4",
+        "2 3 4",
+        "1"
+      ],
+      "text": "Что выведется на экран после выполнения программы?",
+      "id": 13
+    },
+    {
+      "created": "1 июня 2016 г. 1:16:26",
+      "snippet_id": 0,
+      "complexity_level": 0,
+      "isright": null,
+      "checks": [
+        true,
+        false,
+        false,
+        false
+      ],
+      "answers": [
+        "mutable",
+        "restrict",
+        "volatile",
+        "_Atomic"
+      ],
+      "text": "Какого квалификатора типов не существует в языке C стандарта С11 (последний для языка С)",
+      "id": 14
+    },
+    {
+      "created": "1 июня 2016 г. 1:27:26",
+      "snippet_id": 10,
+      "complexity_level": 0,
+      "isright": null,
+      "checks": [
+        false,
+        false,
+        true,
+        false
+      ],
+      "answers": [
+        "x - указатель",
+        "x - массив из 3 указателей",
+        "x - массив из 3 указателей на функцию",
+        "Ошибочное объявление x"
+      ],
+      "text": "Выберите правильное описание переменной  x , исходя из её объявления",
+      "id": 15
+    },
+    {
+      "created": "1 июня 2016 г. 3:20:01",
+      "snippet_id": 0,
+      "complexity_level": 0,
+      "isright": null,
+      "checks": [
+        false,
+        true,
+        false,
+        false
+      ],
+      "answers": [
+        "Можно",
+        "Нельзя",
+        "-",
+        "-"
+      ],
+      "text": "Можно ли использовать оператор switch для селектора типа string?",
+      "id": 26
+    },
+    {
+      "created": "1 июня 2016 г. 1:36:31",
+      "snippet_id": 0,
+      "complexity_level": 0,
+      "isright": null,
+      "checks": [
+        false,
+        false,
+        false,
+        true
+      ],
+      "answers": [
+        "1,2",
+        "1,3",
+        "2,4",
+        "1,2,3"
+      ],
+      "text": "Какие из следующих операторов являются унарными в языке Си?\n1.\t!\n2.\tsizeof\n3.\t~\n4.\t&&",
+      "id": 17
+    },
+    {
+      "created": "1 июня 2016 г. 1:44:43",
+      "snippet_id": 0,
+      "complexity_level": 0,
+      "isright": null,
+      "checks": [
+        false,
+        false,
+        false,
+        true
+      ],
+      "answers": [
+        "Оператор &",
+        "Оператор .",
+        "Оператор *",
+        "Оператор ->"
+      ],
+      "text": "Для доступа к полю структуры по указателю используется:",
+      "id": 18
+    },
+    {
+      "created": "1 июня 2016 г. 1:49:21",
+      "snippet_id": 0,
+      "complexity_level": 0,
+      "isright": null,
+      "checks": [
+        false,
+        true,
+        false,
+        false
+      ],
+      "answers": [
+        "Линус Торвальдс",
+        "Деннис Ритчи",
+        "Бьёрн Страуструп",
+        "Билл Гейтс :)"
+      ],
+      "text": "Вспомните создателя языка Си",
+      "id": 19
+    },
+    {
+      "created": "1 июня 2016 г. 2:01:59",
+      "snippet_id": 0,
+      "complexity_level": 0,
+      "isright": null,
+      "checks": [
+        false,
+        false,
+        false,
+        true
+      ],
+      "answers": [
+        "int to float",
+        "float to int",
+        "char to float",
+        "все допустимы"
+      ],
+      "text": "Какое преобразование типов недопустимо?",
+      "id": 20
+    },
+    {
+      "created": "1 июня 2016 г. 3:19:41",
+      "snippet_id": 0,
+      "complexity_level": 0,
+      "isright": null,
+      "checks": [
+        false,
+        true,
+        false,
+        false
+      ],
+      "answers": [
+        "Являются",
+        "Нет. Это не утечка памяти",
+        "-",
+        "-"
+      ],
+      "text": "Являются ли утечкой памяти потерянные файловые дескрипторы?",
+      "id": 26
+    },
+    {
+      "created": "1 июня 2016 г. 2:59:48",
+      "snippet_id": 11,
+      "complexity_level": 0,
+      "isright": null,
+      "checks": [
+        false,
+        true,
+        false,
+        false
+      ],
+      "answers": [
+        "5#6",
+        "4#5",
+        "4#6",
+        "Ошибка компиляции!"
+      ],
+      "text": "Какое значение выведется на экран после выполнения программы?",
+      "id": 22
+    },
+    {
+      "created": "1 июня 2016 г. 3:19:33",
+      "snippet_id": 12,
+      "complexity_level": 0,
+      "isright": null,
+      "checks": [
+        true,
+        false,
+        false,
+        false
+      ],
+      "answers": [
+        "Да",
+        "Нет",
+        "-",
+        "-"
+      ],
+      "text": "Скомпилируется ли следующий код?",
+      "id": 26
+    },
+    {
+      "created": "1 июня 2016 г. 3:07:27",
+      "snippet_id": 0,
+      "complexity_level": 0,
+      "isright": null,
+      "checks": [
+        true,
+        false,
+        false,
+        false
+      ],
+      "answers": [
+        "1972",
+        "1980",
+        "1989",
+        "1999"
+      ],
+      "text": "Когда был изобретен язык Си?",
+      "id": 24
+    },
+    {
+      "created": "1 июня 2016 г. 3:10:40",
+      "snippet_id": 0,
+      "complexity_level": 0,
+      "isright": null,
+      "checks": [
+        false,
+        true,
+        false,
+        false
+      ],
+      "answers": [
+        "#include",
+        "#ifnot",
+        "#elif",
+        "#pragma"
+      ],
+      "text": "Какой директивы препроцессора не существует?",
+      "id": 25
+    }
+  ]
+}
