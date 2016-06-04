@@ -202,14 +202,26 @@ namespace CourseProject {
 
 
 	}
-private: System::Void button3_Click(System::Object^  sender, System::EventArgs^  e) { // delete button+
+private: System::Void button3_Click(System::Object^  sender, System::EventArgs^  e) { // delete button++
 	if (dataGridView1->SelectedRows->Count != 0) {
 		int selIndex = dataGridView1->SelectedRows[0]->Index;
+
+		for each (auto q in Functions::userList->Items)
+		{
+			if (q->ID.Equals(Functions::questionsList->Items[selIndex]->ID))
+			{
+				Functions::userList->Items->Remove(q);
+				//MessageBox::Show(q->ID.ToString());
+				break;
+			}
+			
+        }
 		Functions::questionsList->Items->RemoveAt(selIndex);
+		
 		dataGridView1->Rows->RemoveAt(selIndex);
 	}
 }
-private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) { // add button+
+private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) { // add button++
 	DataModels::Question ^questiontoAdd = nullptr;
 
 	questiontoAdd = EdtForm::ShowEditor(nullptr);
@@ -217,10 +229,11 @@ private: System::Void button1_Click(System::Object^  sender, System::EventArgs^ 
 	if (questiontoAdd != nullptr)
 	{
 		Functions::questionsList->Items->Add(questiontoAdd);
+		Functions::userList->Items->Add(questiontoAdd);
 		dataGridView1->Rows->Add(questiontoAdd->ID, questiontoAdd->Text);
 	}
 }
-private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) { // edit button+
+private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) { // edit button++
 
 	if (dataGridView1->SelectedRows->Count != 0)
 	{
@@ -230,11 +243,21 @@ private: System::Void button2_Click(System::Object^  sender, System::EventArgs^ 
 		if (questionToEdit != nullptr)
 		{
 			Functions::questionsList->Items[selIndex] = questionToEdit;
+			for each (auto q in Functions::userList->Items)
+			{
+				if (q->ID.Equals(Functions::questionsList->Items[selIndex]->ID))
+				{
+					int index = Functions::userList->Items->IndexOf(q);
+					//MessageBox::Show(index.ToString());
+					Functions::userList->Items[index] = questionToEdit;
+					break;
+				}
+
+			}
+
 			dataGridView1->Rows[selIndex]->Cells[1]->Value = questionToEdit->Text;
 		}
 	}
-
-
 }
 };
 }

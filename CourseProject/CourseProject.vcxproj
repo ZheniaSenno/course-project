@@ -217,16 +217,19 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AuthFrm.cpp" />
     <ClCompile Include="Editor.cpp" />
     <ClCompile Include="EdtForm.cpp" />
     <ClCompile Include="Functions.cpp" />
     <ClCompile Include="JsonUtils.cpp" />
     <ClCompile Include="MyForm.cpp" />
     <ClCompile Include="ResultsFrm.cpp" />
-    <ClCompile Include="SnippetForm.cpp" />
     <ClCompile Include="SyntaxHighlighter.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AuthFrm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="DataModels.h" />
     <ClInclude Include="Editor.h">
       <FileType>CppForm</FileType>
@@ -243,15 +246,15 @@
     <ClInclude Include="ResultsFrm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
-    <ClInclude Include="SnippetForm.h">
-      <FileType>CppForm</FileType>
-    </ClInclude>
     <ClInclude Include="SyntaxHighlighter.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="CourseProject.rc" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="AuthFrm.resx">
+      <DependentUpon>AuthFrm.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Editor.resx">
       <DependentUpon>Editor.h</DependentUpon>
     </EmbeddedResource>
@@ -263,9 +266,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ResultsFrm.resx">
       <DependentUpon>ResultsFrm.h</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SnippetForm.resx">
-      <DependentUpon>SnippetForm.h</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

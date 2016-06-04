@@ -33,10 +33,10 @@
     <ClCompile Include="EdtForm.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SnippetForm.cpp">
+    <ClCompile Include="ResultsFrm.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ResultsFrm.cpp">
+    <ClCompile Include="AuthFrm.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -65,10 +65,10 @@
     <ClInclude Include="EdtForm.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SnippetForm.h">
+    <ClInclude Include="ResultsFrm.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ResultsFrm.h">
+    <ClInclude Include="AuthFrm.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -85,6 +85,12 @@
       <Filter>Resource Files</Filter>
     </EmbeddedResource>
     <EmbeddedResource Include="EdtForm.resx">
+      <Filter>Resource Files</Filter>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ResultsFrm.resx">
+      <Filter>Resource Files</Filter>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SnippetForm.resx">
       <Filter>Resource Files</Filter>
     </EmbeddedResource>
   </ItemGroup>

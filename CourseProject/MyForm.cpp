@@ -1,4 +1,5 @@
-#include "MyForm.h"
+#include "AuthFrm.h"
+#include "Functions.h"
 // see headers -- interface
 
 using namespace System;
@@ -11,6 +12,7 @@ void Main(array<String^>^ args)
 	Application::EnableVisualStyles();
 	Application::SetCompatibleTextRenderingDefault(false);
 
-	CourseProject::MyForm form;
-	Application::Run(%form);
+	CourseProject::AuthFrm authform;
+	Application::Run(%authform);
+
 }

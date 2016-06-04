@@ -8,12 +8,18 @@ void Functions::WriteToFile()
 {
 	JsonUtils::Serialize(questionsList, "..\\CourseProject\\learning\\" + _questionsfilename);
 	JsonUtils::Serialize(snippetsList, "..\\CourseProject\\learning\\" + _snippetsfilename);
+	JsonUtils::Serialize(users, "..\\CourseProject\\learning\\" + _usersfilename);
+	JsonUtils::Serialize(recordsList, "..\\CourseProject\\learning\\" + _recordsfilename);
+
 }
 void Functions::ReadFromFile()
 {
 	questionsList = JsonUtils::Deserialize<DataModels::Questions^>("..\\CourseProject\\learning\\" + _questionsfilename);
 	userList = JsonUtils::Deserialize<DataModels::Questions^>("..\\CourseProject\\learning\\"+_questionsfilename);
 	snippetsList = JsonUtils::Deserialize<DataModels::Snippets^>("..\\CourseProject\\learning\\" + _snippetsfilename);
+	users = JsonUtils::Deserialize<DataModels::Users^>("..\\CourseProject\\learning\\" + _usersfilename);
+	recordsList = JsonUtils::Deserialize<DataModels::Records^>("..\\CourseProject\\learning\\" + _recordsfilename);
+
 }
 
 
@@ -78,6 +84,35 @@ generic<typename T>
 			}
 		}
 		return true;
+	}
+
+
+	String^ Functions::GetHash(MD5 ^md5Hash, String ^input)
+	{
+		array<Byte> ^data = md5Hash->ComputeHash(Encoding::UTF8->GetBytes(input));
+		StringBuilder ^sb = gcnew StringBuilder();
+
+		for (int i = 0; i < data->Length; i++)
+		{
+			sb->Append(data[i].ToString("x2"));
+		}
+
+		return sb->ToString();
+	}
+
+	bool Functions::VerifyHash(MD5 ^md5Hash, String ^input, String ^hash)
+	{
+		String ^hashOfInput = GetHash(md5Hash, input);
+		StringComparer ^comparer = StringComparer::OrdinalIgnoreCase;
+
+		if (comparer->Compare(hashOfInput, hash) == 0)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
 
 

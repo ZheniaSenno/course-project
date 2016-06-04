@@ -83,6 +83,66 @@ ref class Questions
 			}
 		};
 
+	public:
+		[Serializable]
+		ref class User
+		{
+		public:
+			[JsonPropertyAttribute("login")]
+			property String^ Login;
+			[JsonPropertyAttribute("hash")]
+			property String^ Hash;
+		};
+
+		ref class Users
+		{
+		private:
+			List<User^> ^_items = gcnew List<User^>();
+		public:
+			[JsonPropertyAttribute("users")]
+			property List<User^> ^Items
+			{
+				List<User^> ^get()
+				{
+					return _items;
+				}
+				void set(List<User^> ^value)
+				{
+					_items = value;
+				}
+			}
+		};
+
+		public:
+			[Serializable]
+			ref class Record
+			{
+			public:
+				[JsonPropertyAttribute("user")]
+				property String^ User;
+				[JsonPropertyAttribute("result")]
+				property String^ Result;
+			};
+
+			ref class Records
+			{
+			private:
+				List<Record^> ^_items = gcnew List<Record^>();
+			public:
+				[JsonPropertyAttribute("items")]
+				property List<Record^> ^Items
+				{
+					List<Record^> ^get()
+					{
+						return _items;
+					}
+					void set(List<Record^> ^value)
+					{
+						_items = value;
+					}
+				}
+			};
+
 
 };
 }

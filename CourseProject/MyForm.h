@@ -1,8 +1,9 @@
 ﻿#pragma once
 #include "Functions.h"
-#include "SnippetForm.h"
+#include "SyntaxHighlighter.h"
 #include "Editor.h"
 #include "ResultsFrm.h"
+#include "AuthFrm.h"
 
 namespace CourseProject
 {
@@ -51,6 +52,8 @@ namespace CourseProject
 			}
 		}
 	protected:
+	public: String^ username;
+
 
 	private: System::Windows::Forms::Button^  button5;
 
@@ -103,6 +106,9 @@ namespace CourseProject
 	private: PdfLoadedDocument^ pdf5;
 	private: PdfLoadedDocument^ pdf6;
 	private: PdfLoadedDocument^ pdf7;
+	private: System::Windows::Forms::Panel^  panel1;
+	private: System::Windows::Forms::Label^  label5;
+	private: System::Windows::Forms::Label^  label4;
 
 
 
@@ -141,6 +147,9 @@ namespace CourseProject
 			this->pdfDocumentView1 = (gcnew Syncfusion::Windows::Forms::PdfViewer::PdfDocumentView());
 			this->button7 = (gcnew System::Windows::Forms::Button());
 			this->tabPage2 = (gcnew Syncfusion::Windows::Forms::Tools::TabPageAdv());
+			this->label5 = (gcnew System::Windows::Forms::Label());
+			this->label4 = (gcnew System::Windows::Forms::Label());
+			this->panel1 = (gcnew System::Windows::Forms::Panel());
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->groupBox1 = (gcnew System::Windows::Forms::GroupBox());
 			this->radioButtonAdv4 = (gcnew Syncfusion::Windows::Forms::Tools::RadioButtonAdv());
@@ -421,6 +430,9 @@ namespace CourseProject
 			// tabPage2
 			// 
 			this->tabPage2->BackColor = System::Drawing::Color::White;
+			this->tabPage2->Controls->Add(this->label5);
+			this->tabPage2->Controls->Add(this->label4);
+			this->tabPage2->Controls->Add(this->panel1);
 			this->tabPage2->Controls->Add(this->label3);
 			this->tabPage2->Controls->Add(this->groupBox1);
 			this->tabPage2->Controls->Add(this->label2);
@@ -443,6 +455,37 @@ namespace CourseProject
 			this->tabPage2->TabIndex = 1;
 			this->tabPage2->Text = L"Testing";
 			this->tabPage2->ThemesEnabled = true;
+			// 
+			// label5
+			// 
+			this->label5->AutoSize = true;
+			this->label5->Font = (gcnew System::Drawing::Font(L"Lucida Console", 10.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->label5->ForeColor = System::Drawing::Color::Magenta;
+			this->label5->Location = System::Drawing::Point(632, 494);
+			this->label5->Name = L"label5";
+			this->label5->Size = System::Drawing::Size(303, 14);
+			this->label5->TabIndex = 40;
+			this->label5->Text = L"Please click Start! to start test -->";
+			// 
+			// label4
+			// 
+			this->label4->AutoSize = true;
+			this->label4->Font = (gcnew System::Drawing::Font(L"Lucida Console", 10.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->label4->ForeColor = System::Drawing::Color::Magenta;
+			this->label4->Location = System::Drawing::Point(9, 35);
+			this->label4->Name = L"label4";
+			this->label4->Size = System::Drawing::Size(63, 14);
+			this->label4->TabIndex = 39;
+			this->label4->Text = L"Hello, ";
+			// 
+			// panel1
+			// 
+			this->panel1->Location = System::Drawing::Point(800, 63);
+			this->panel1->Name = L"panel1";
+			this->panel1->Size = System::Drawing::Size(345, 328);
+			this->panel1->TabIndex = 38;
 			// 
 			// label3
 			// 
@@ -679,7 +722,9 @@ namespace CourseProject
 
 	private: System::Void MyForm_Load(System::Object^ sender, System::EventArgs^ e)
 	{
-		Functions::ReadFromFile();
+		//Functions::ReadFromFile();
+		//set username
+		label4->Text = label4->Text + username;
 		Functions::Shuffle(Functions::userList);
 		gradientLabel1_Click(nullptr, nullptr);
 		//main->
@@ -702,6 +747,7 @@ namespace CourseProject
 			MessageBox::Show("Finished!!");
 			
 			//this->Close();
+			resFrm->username = this->username;
 			Hide();
 			resFrm->Show();
 		}
@@ -716,16 +762,14 @@ namespace CourseProject
 				if (rb != nullptr)
 					rb->Text = Functions::current->TextVariants[i - 1];
 			}
-
+			this->panel1->Controls->Clear();
 			if (Functions::current->SnippetID != 0)
 			{
-				SnippetForm ^newSnipp = gcnew SnippetForm();
 				for each(auto item in Functions::snippetsList->Items)
 				{
 					if (item->ID == Functions::current->SnippetID)
 					{
-						newSnipp->RunHighlighter(item->Code);
-						newSnipp->ShowDialog();
+						this->RunHighlighter(item->Code);
 						break;
 					}
 				}
@@ -768,8 +812,13 @@ namespace CourseProject
 		this->richTextBox1->Visible = true;
 		this->button5->Visible = true;
 		this->label2->Visible = true;
+		this->label5->Visible = false;
 		this->button5->Enabled = false;
 		this->button8->Enabled = false;
+		//lock editor while testing
+		this->button9->Enabled = false;
+
+		Functions::Shuffle(Functions::userList);
 
 		Functions::current = Functions::userList->Items[0];
 		this->label3->Text = Convert::ToString(++Functions::counter) + " / " + Convert::ToString(Functions::userList->Items->Count);
@@ -783,18 +832,34 @@ namespace CourseProject
 		}
 		if (Functions::current->SnippetID != 0)
 		{
-			SnippetForm ^newSnipp = gcnew SnippetForm();
 			for each(auto item in Functions::snippetsList->Items)
 			{
 				if (item->ID == Functions::current->SnippetID)
 				{
-					newSnipp->RunHighlighter(item->Code);
-					newSnipp->ShowDialog();
+					this->RunHighlighter(item->Code);
 					break;
 				}
 			}
 		}
 	}
+
+public: Void RunHighlighter(String^ code)
+{
+	ElementHost ^elementHost = gcnew ElementHost();
+	this->panel1->Controls->Clear();
+	elementHost->Dock = DockStyle::Fill;
+	this->panel1->Controls->Add(elementHost);
+	TextBlock ^tb = gcnew TextBlock();
+	elementHost->Child = tb;
+	elementHost->Margin = System::Windows::Forms::Padding(0, 0, 0, 0);
+	elementHost->Region = gcnew System::Drawing::Region();
+	elementHost->BackColor = System::Drawing::Color::White;
+
+	SyntaxHighlighter ^syntax = gcnew SyntaxHighlighter(tb);
+	syntax->DoHighlight(code);
+	elementHost->Font = gcnew System::Drawing::Font("Consolas", 8.0F);
+}
+
 	private: System::Void button9_Click(System::Object^  sender, System::EventArgs^  e) {
 		Editor^ frmEd = gcnew Editor();
 		frmEd->ShowDialog();
@@ -803,53 +868,123 @@ namespace CourseProject
 
 
 	private: System::Void gradientLabel1_Click(System::Object^  sender, System::EventArgs^  e) {
-		Stream^ fs = gcnew FileStream("..\\CourseProject\\learning\\1 - Введение.pdf", FileMode::Open);
-		PdfLoadedDocument^ pdf = gcnew PdfLoadedDocument(fs);
-		this->pdfDocumentView1->Load(pdf);
-		this->pdfDocumentView1->Focus();
-		this->pdfDocumentView1->VerticalScroll->Enabled = true;
+		Stream^ fs = nullptr;
+		PdfLoadedDocument^ pdf;
+		try
+		{
+			fs = gcnew FileStream("..\\CourseProject\\learning\\1 - Введение.pdf", FileMode::Open);
+		}
+		catch (IOException^ ex)
+		{
+		}
+		if (fs != nullptr) {
+			pdf = gcnew PdfLoadedDocument(fs);
+			this->pdfDocumentView1->Load(pdf);
+			this->pdfDocumentView1->Focus();
+			this->pdfDocumentView1->VerticalScroll->Enabled = true;
+		}
 	}
 	private: System::Void gradientLabel2_Click(System::Object^  sender, System::EventArgs^  e) {
-		Stream^ fs = gcnew FileStream("..\\CourseProject\\learning\\2 - Типы.Операторы.Выражения.pdf", FileMode::Open);
-		PdfLoadedDocument^ pdf = gcnew PdfLoadedDocument(fs);
-		this->pdfDocumentView1->Load(pdf);
-		this->pdfDocumentView1->Focus();
-		this->pdfDocumentView1->VerticalScroll->Enabled = true;
+		Stream^ fs = nullptr;
+		PdfLoadedDocument^ pdf;
+		try
+		{
+			fs = gcnew FileStream("..\\CourseProject\\learning\\2 - Типы.Операторы.Выражения.pdf", FileMode::Open);
+		}
+		catch (IOException^ ex)
+		{
+		}
+		if (fs != nullptr) {
+			pdf = gcnew PdfLoadedDocument(fs);
+			this->pdfDocumentView1->Load(pdf);
+			this->pdfDocumentView1->Focus();
+			this->pdfDocumentView1->VerticalScroll->Enabled = true;
+		}
 	}
 	private: System::Void gradientLabel3_Click(System::Object^  sender, System::EventArgs^  e) {
-		Stream^ fs = gcnew FileStream("..\\CourseProject\\learning\\3 - Инструкции управления.Основные циклы.pdf", FileMode::Open);
-		PdfLoadedDocument^ pdf = gcnew PdfLoadedDocument(fs);
-		this->pdfDocumentView1->Load(pdf);
-		this->pdfDocumentView1->Focus();
-		this->pdfDocumentView1->VerticalScroll->Enabled = true;
+		Stream^ fs = nullptr;
+		PdfLoadedDocument^ pdf;
+		try
+		{
+			fs = gcnew FileStream("..\\CourseProject\\learning\\3 - Инструкции управления.Основные циклы.pdf", FileMode::Open);
+		}
+		catch (IOException^ ex)
+		{
+		}
+		if (fs != nullptr) {
+			pdf = gcnew PdfLoadedDocument(fs);
+			this->pdfDocumentView1->Load(pdf);
+			this->pdfDocumentView1->Focus();
+			this->pdfDocumentView1->VerticalScroll->Enabled = true;
+		}
 	}
 	private: System::Void gradientLabel4_Click(System::Object^  sender, System::EventArgs^  e) {
-		Stream^ fs = gcnew FileStream("..\\CourseProject\\learning\\4 - Препроцессор языка С.pdf", FileMode::Open);
-		PdfLoadedDocument^ pdf = gcnew PdfLoadedDocument(fs);
-		this->pdfDocumentView1->Load(pdf);
-		this->pdfDocumentView1->Focus();
-		this->pdfDocumentView1->VerticalScroll->Enabled = true;
+		Stream^ fs = nullptr;
+		PdfLoadedDocument^ pdf;
+		try
+		{
+			fs = gcnew FileStream("..\\CourseProject\\learning\\4 - Препроцессор языка С.pdf", FileMode::Open);
+		}
+		catch (IOException^ ex)
+		{
+		}
+		if (fs != nullptr) {
+			pdf = gcnew PdfLoadedDocument(fs);
+			this->pdfDocumentView1->Load(pdf);
+			this->pdfDocumentView1->Focus();
+			this->pdfDocumentView1->VerticalScroll->Enabled = true;
+		}
 	}
 	private: System::Void gradientLabel5_Click(System::Object^  sender, System::EventArgs^  e) {
-		Stream^ fs = gcnew FileStream("..\\CourseProject\\learning\\5 - Указатели и массивы.pdf", FileMode::Open);
-		PdfLoadedDocument^ pdf = gcnew PdfLoadedDocument(fs);
-		this->pdfDocumentView1->Load(pdf);
-		this->pdfDocumentView1->Focus();
-		this->pdfDocumentView1->VerticalScroll->Enabled = true;
+		Stream^ fs = nullptr;
+		PdfLoadedDocument^ pdf;
+		try
+		{
+			fs = gcnew FileStream("..\\CourseProject\\learning\\5 - Указатели и массивы.pdf", FileMode::Open);
+		}
+		catch (IOException^ ex)
+		{
+		}
+		if (fs != nullptr) {
+			pdf = gcnew PdfLoadedDocument(fs);
+			this->pdfDocumentView1->Load(pdf);
+			this->pdfDocumentView1->Focus();
+			this->pdfDocumentView1->VerticalScroll->Enabled = true;
+		}
 	}
 	private: System::Void gradientLabel6_Click(System::Object^  sender, System::EventArgs^  e) {
-		Stream^ fs = gcnew FileStream("..\\CourseProject\\learning\\6 - Структуры.pdf", FileMode::Open);
-		PdfLoadedDocument^ pdf = gcnew PdfLoadedDocument(fs);
-		this->pdfDocumentView1->Load(pdf);
-		this->pdfDocumentView1->Focus();
-		this->pdfDocumentView1->VerticalScroll->Enabled = true;
+		Stream^ fs = nullptr;
+		PdfLoadedDocument^ pdf;
+		try
+		{
+			fs = gcnew FileStream("..\\CourseProject\\learning\\6 - Структуры.pdf", FileMode::Open);
+		}
+		catch (IOException^ ex)
+		{
+		}
+		if (fs != nullptr) {
+			pdf = gcnew PdfLoadedDocument(fs);
+			this->pdfDocumentView1->Load(pdf);
+			this->pdfDocumentView1->Focus();
+			this->pdfDocumentView1->VerticalScroll->Enabled = true;
+		}
 	}
 	private: System::Void gradientLabel7_Click(System::Object^  sender, System::EventArgs^  e) {
-		Stream^ fs = gcnew FileStream("..\\CourseProject\\learning\\7 - Ввод и вывод. Работа с файлами.pdf", FileMode::Open);
-		PdfLoadedDocument^ pdf = gcnew PdfLoadedDocument(fs);
-		this->pdfDocumentView1->Load(pdf);
-		this->pdfDocumentView1->Focus();
-		this->pdfDocumentView1->VerticalScroll->Enabled = true;
+		Stream^ fs = nullptr;
+		PdfLoadedDocument^ pdf;
+		try
+		{
+			fs = gcnew FileStream("..\\CourseProject\\learning\\7 - Ввод и вывод. Работа с файлами.pdf", FileMode::Open);
+		}
+		catch (IOException^ ex)
+		{
+		}
+		if (fs != nullptr) {
+			pdf = gcnew PdfLoadedDocument(fs);
+			this->pdfDocumentView1->Load(pdf);
+			this->pdfDocumentView1->Focus();
+			this->pdfDocumentView1->VerticalScroll->Enabled = true;
+		}
 	}
 		/*DataModels::Snippet^ sn = gcnew DataModels::Snippet();
 		sn->ID = Functions::snippetsList->Items->Count + 1;
@@ -870,5 +1005,6 @@ private: System::Void radioButtonAdv3_CheckChanged(System::Object^  sender, Syst
 private: System::Void radioButtonAdv4_CheckChanged(System::Object^  sender, System::EventArgs^  e) {
 	this->button5->Enabled = true;
 }
+
 };
 }

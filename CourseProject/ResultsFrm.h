@@ -43,7 +43,12 @@ namespace CourseProject {
 	private: System::Windows::Forms::Button^  button1;
 	private: System::Windows::Forms::Label^  label1;
 	private: System::Windows::Forms::Label^  label2;
+	private: System::Windows::Forms::DataGridView^  dataGridView2;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^  dataGridViewTextBoxColumn1;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^  dataGridViewTextBoxColumn2;
+	private: Syncfusion::Windows::Forms::Tools::AutoLabel^  autoLabel1;
 
+	public: String^ username;
 	private:
 		/// <summary>
 		/// Обязательная переменная конструктора.
@@ -64,7 +69,12 @@ namespace CourseProject {
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
+			this->dataGridView2 = (gcnew System::Windows::Forms::DataGridView());
+			this->dataGridViewTextBoxColumn1 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->dataGridViewTextBoxColumn2 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->autoLabel1 = (gcnew Syncfusion::Windows::Forms::Tools::AutoLabel());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView2))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// dataGridView1
@@ -83,7 +93,7 @@ namespace CourseProject {
 					this->Column2, this->Column3
 			});
 			this->dataGridView1->EditMode = System::Windows::Forms::DataGridViewEditMode::EditProgrammatically;
-			this->dataGridView1->Location = System::Drawing::Point(117, 165);
+			this->dataGridView1->Location = System::Drawing::Point(43, 165);
 			this->dataGridView1->MultiSelect = false;
 			this->dataGridView1->Name = L"dataGridView1";
 			this->dataGridView1->ReadOnly = true;
@@ -93,7 +103,7 @@ namespace CourseProject {
 			this->dataGridView1->ShowCellToolTips = false;
 			this->dataGridView1->ShowEditingIcon = false;
 			this->dataGridView1->ShowRowErrors = false;
-			this->dataGridView1->Size = System::Drawing::Size(535, 308);
+			this->dataGridView1->Size = System::Drawing::Size(527, 308);
 			this->dataGridView1->TabIndex = 1;
 			// 
 			// Column1
@@ -137,7 +147,7 @@ namespace CourseProject {
 			this->label1->Font = (gcnew System::Drawing::Font(L"Lucida Calligraphy", 25.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->label1->ForeColor = System::Drawing::Color::ForestGreen;
-			this->label1->Location = System::Drawing::Point(426, 61);
+			this->label1->Location = System::Drawing::Point(361, 61);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(0, 39);
 			this->label1->TabIndex = 21;
@@ -148,17 +158,75 @@ namespace CourseProject {
 			this->label2->Font = (gcnew System::Drawing::Font(L"Lucida Calligraphy", 25.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->label2->ForeColor = System::Drawing::Color::ForestGreen;
-			this->label2->Location = System::Drawing::Point(225, 61);
+			this->label2->Location = System::Drawing::Point(160, 61);
 			this->label2->Name = L"label2";
 			this->label2->Size = System::Drawing::Size(182, 39);
 			this->label2->TabIndex = 22;
 			this->label2->Text = L"Your result:";
+			// 
+			// dataGridView2
+			// 
+			this->dataGridView2->AllowUserToAddRows = false;
+			this->dataGridView2->AllowUserToDeleteRows = false;
+			this->dataGridView2->AllowUserToResizeRows = false;
+			this->dataGridView2->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+				| System::Windows::Forms::AnchorStyles::Left)
+				| System::Windows::Forms::AnchorStyles::Right));
+			this->dataGridView2->AutoSizeColumnsMode = System::Windows::Forms::DataGridViewAutoSizeColumnsMode::Fill;
+			this->dataGridView2->BackgroundColor = System::Drawing::SystemColors::Info;
+			this->dataGridView2->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
+			this->dataGridView2->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(2) {
+				this->dataGridViewTextBoxColumn1,
+					this->dataGridViewTextBoxColumn2
+			});
+			this->dataGridView2->EditMode = System::Windows::Forms::DataGridViewEditMode::EditProgrammatically;
+			this->dataGridView2->Location = System::Drawing::Point(608, 165);
+			this->dataGridView2->MultiSelect = false;
+			this->dataGridView2->Name = L"dataGridView2";
+			this->dataGridView2->ReadOnly = true;
+			this->dataGridView2->RowHeadersVisible = false;
+			this->dataGridView2->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
+			this->dataGridView2->ShowCellErrors = false;
+			this->dataGridView2->ShowCellToolTips = false;
+			this->dataGridView2->ShowEditingIcon = false;
+			this->dataGridView2->ShowRowErrors = false;
+			this->dataGridView2->Size = System::Drawing::Size(207, 308);
+			this->dataGridView2->TabIndex = 23;
+			// 
+			// dataGridViewTextBoxColumn1
+			// 
+			this->dataGridViewTextBoxColumn1->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
+			this->dataGridViewTextBoxColumn1->FillWeight = 20;
+			this->dataGridViewTextBoxColumn1->HeaderText = L"Login";
+			this->dataGridViewTextBoxColumn1->Name = L"dataGridViewTextBoxColumn1";
+			this->dataGridViewTextBoxColumn1->ReadOnly = true;
+			// 
+			// dataGridViewTextBoxColumn2
+			// 
+			this->dataGridViewTextBoxColumn2->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::Fill;
+			this->dataGridViewTextBoxColumn2->FillWeight = 80;
+			this->dataGridViewTextBoxColumn2->HeaderText = L"Result";
+			this->dataGridViewTextBoxColumn2->Name = L"dataGridViewTextBoxColumn2";
+			this->dataGridViewTextBoxColumn2->ReadOnly = true;
+			// 
+			// autoLabel1
+			// 
+			this->autoLabel1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->autoLabel1->ForeColor = System::Drawing::SystemColors::MenuHighlight;
+			this->autoLabel1->Location = System::Drawing::Point(608, 140);
+			this->autoLabel1->Name = L"autoLabel1";
+			this->autoLabel1->Size = System::Drawing::Size(82, 22);
+			this->autoLabel1->TabIndex = 24;
+			this->autoLabel1->Text = L"Records:";
 			// 
 			// ResultsFrm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(827, 562);
+			this->Controls->Add(this->autoLabel1);
+			this->Controls->Add(this->dataGridView2);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->button1);
@@ -169,6 +237,7 @@ namespace CourseProject {
 			this->Text = L"Results";
 			this->Load += gcnew System::EventHandler(this, &ResultsFrm::ResultsFrm_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView2))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -184,7 +253,18 @@ namespace CourseProject {
 
 			dataGridView1->Rows->Add(item->ID, item->Text, Convert::ToBoolean(item->isRight));
 		}
-		label1->Text = counter + " / " + Functions::userList->Items->Count.ToString();
+		String^ res = counter + " / " + Functions::userList->Items->Count.ToString();
+		label1->Text = res;
+
+		dataGridView2->Rows->Clear();
+		DataModels::Record^ record = gcnew DataModels::Record();
+		record->User = this->username;
+		record->Result = res;
+		Functions::recordsList->Items->Add(record);
+		for each (auto item in Functions::recordsList->Items)
+		{
+			dataGridView2->Rows->Add(item->User, item->Result);
+		}
 	}
 	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
 		Functions::WriteToFile();

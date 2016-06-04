@@ -48,6 +48,8 @@ namespace CourseProject {
 	private:
 		
 		DataModels::Question ^editorResult;
+		static bool isEditing_op = false;
+		static int currentID;
 
 	public:
 		static DataModels::Question ^ShowEditor(DataModels::Question ^editQuestion)
@@ -56,6 +58,8 @@ namespace CourseProject {
 			EdtForm ^thisfrm = gcnew EdtForm();
 			if (editQuestion != nullptr)
 			{
+				isEditing_op = true;
+				currentID = editQuestion->ID;
 				thisfrm->richTextBox1->Text = editQuestion->Text;
 				thisfrm->maskedTextBox1->Text = editQuestion->Level.ToString();
 				thisfrm->maskedTextBox2->Text = editQuestion->SnippetID.ToString();
@@ -374,7 +378,7 @@ namespace CourseProject {
 
 		}
 #pragma endregion
-	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
+	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) { // OK button
 
 		editorResult = gcnew DataModels::Question();
 		editorResult->Text = richTextBox1->Text;
@@ -391,8 +395,15 @@ namespace CourseProject {
 		}
 		editorResult->RightVariants = checks;
 		editorResult->TextVariants = texts;
+		if (isEditing_op)
+		{
+			editorResult->ID = currentID;
+		}
+		else
+		{
+			editorResult->ID = Functions::questionsList->Items->Count + 1;
+		}
 		editorResult->CreatedTime = DateTime::Now.ToString("F");
-		editorResult->ID = Functions::questionsList->Items->Count + 1;
 		if (maskedTextBox1->Text == "") maskedTextBox1->Text = "0";
 		editorResult->Level = Convert::ToUInt32(maskedTextBox1->Text);
 		if (maskedTextBox2->Text == "") maskedTextBox2->Text = "0";

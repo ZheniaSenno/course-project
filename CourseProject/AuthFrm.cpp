@@ -1,2 +1,2 @@
-#include "SnippetForm.h"
+#include "AuthFrm.h"
 // see headers -- interface
